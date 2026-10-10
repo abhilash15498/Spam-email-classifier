@@ -4,9 +4,29 @@ An internship-ready Natural Language Processing (NLP) application that classifie
 
 ---
 
+## 📸 Application Visual Showcase
+
+### 1. ☀️ Light Mode & Spam Detection with NLP Signal Inspection
+![Spam Detection Result](reports/screenshots/ui_spam_detected.png)
+*Real-time spam detection showing 100.00% spam probability, color-coded alert badge, and automated NLP feature extraction signals (currency, phone digits, urgency keywords).*
+
+---
+
+### 2. ✅ Legitimate (Ham) Message Classification
+![Ham Classification Result](reports/screenshots/ui_ham_detected.png)
+*Conversational message classified as legitimate with 99.77% confidence and green success status.*
+
+---
+
+### 3. 🌙 Dark Mode & Bulk Batch CSV Processing
+![Dark Mode Batch CSV Processing](reports/screenshots/ui_dark_mode_batch.png)
+*Batch CSV classification interface in Dark Mode: summary metrics, interactive preview table with prediction badges, and instant CSV export.*
+
+---
+
 ## 📌 Project Overview & Objectives
 
-In mobile telecommunications, SMS spam presents severe user security risks including phishing attacks, financial deception, and malware distribution. However, building an ML filter involves an operational trade-off:
+In mobile telecommunications, SMS spam presents severe user security risks including phishing attacks, financial deception, and malware distribution. However, building an ML filter involves an operational asymmetry:
 - **False Negative (Missed Spam):** An unwanted promotional message lands in the inbox.
 - **False Positive (Legitimate Blocked):** An urgent personal message, flight update, or banking OTP is erroneously flagged as spam.
 
@@ -16,7 +36,7 @@ This project implements the complete, production-grade Machine Learning workflow
 3. **Signal-Preserving Preprocessing:** Normalizing URLs, phone numbers, and currency signs into semantic tokens rather than discarding them.
 4. **Leak-Free ML Pipeline:** Scikit-learn `Pipeline` pairing unigram/bigram TF-IDF vectorization with regularized classifiers.
 5. **Model Evaluation & Comparison:** Benchmarking Logistic Regression and Multinomial Naive Bayes against a held-out test set with confusion matrix analysis.
-6. **Interactive Web Interface:** Streamlit application providing real-time message inference, confidence meters, and CSV batch processing.
+6. **Interactive Web Interface:** Streamlit application providing real-time message inference, confidence meters, dynamic Light/Dark mode, and CSV batch processing.
 
 ---
 
@@ -39,9 +59,10 @@ This project implements the complete, production-grade Machine Learning workflow
 
 ```text
 spam-message-classifier/
-├── app.py                             # Interactive Streamlit application
+├── app.py                             # Interactive Streamlit application (Light & Dark mode)
 ├── requirements.txt                   # Core project dependencies
 ├── README.md                          # Comprehensive project documentation
+├── sample_test_messages.csv           # Ready-to-use sample dataset for batch testing
 ├── .gitignore                         # Git exclusion rules for virtualenvs & artifacts
 ├── data/
 │   ├── README.md                      # Dataset provenance, schema, and manual download steps
@@ -54,7 +75,6 @@ spam-message-classifier/
 ├── models/
 │   ├── spam_classifier_pipeline.joblib# Serialized winning model pipeline artifact
 │   └── model_metadata.json            # Model parameters, training timestamp, and metrics
-├── notebooks/                         # Space for exploratory notebooks
 ├── reports/
 │   ├── class_distribution.png         # Bar plot of dataset class proportions
 │   ├── message_length_distribution.png# Character and word length comparisons by class
@@ -62,7 +82,13 @@ spam-message-classifier/
 │   ├── eda_summary.json               # Exploratory data statistics
 │   ├── model_comparison.csv           # Performance comparison across candidate models
 │   ├── evaluation_metrics.json        # Measured test metrics on held-out test partition
-│   └── internship_presentation_guide.md# 5-minute presentation script & examiner defense guide
+│   ├── internship_presentation_guide.md# 5-minute presentation script & examiner defense guide
+│   └── screenshots/                   # Application screenshots for documentation
+│       ├── ui_light_mode_overview.png
+│       ├── ui_spam_detected.png
+│       ├── ui_ham_detected.png
+│       ├── ui_dark_mode_overview.png
+│       └── ui_dark_mode_batch.png
 ├── src/
 │   └── spam_classifier/
 │       ├── __init__.py                # Package initialization
@@ -205,14 +231,18 @@ Evaluated strictly on the held-out 20% test partition (1,115 SMS messages, rando
 - **Legitimate Message Recall:** $964 / 966 = \mathbf{99.79\%}$ (Only 2 legitimate messages misclassified out of 966).
 - **Spam Precision:** $141 / (141 + 2) = \mathbf{98.60\%}$.
 
+![Confusion Matrix](reports/confusion_matrix.png)
+
 ---
 
 ## 🖥️ Streamlit Application Features
 
+- **Dynamic Theme Switcher:** One-click toggle between **☀️ Light Mode** and **🌙 Dark Mode** with custom high-contrast styling across all widgets.
 - **Single Message Classification:** Real-time inference with probability breakdown meters.
 - **Visual Feedback:** Color-coded alert boxes (Green for Legitimate, Red for Spam).
 - **One-Click Demo Presets:** Preloaded test messages for rapid live demonstration.
-- **Batch CSV Upload:** Upload any CSV with a `message` column, run batch classification, and download results.
+- **NLP Signal Inspector:** Displays detected feature tokens (URLs, phone numbers, currency, urgent terms).
+- **Batch CSV Processing:** Upload any CSV or test with preloaded datasets; includes full CSV download export.
 - **Architecture Transparency:** Sidebar displaying live model parameters, test metrics, and confusion matrix.
 
 ---
