@@ -1,0 +1,20 @@
+{
+  "model_name": "Multinomial Naive Bayes",
+  "trained_at_utc": "2026-10-10T17:36:30.167335+00:00",
+  "random_state": 42,
+  "test_size": 0.2,
+  "training_samples": 4459,
+  "test_samples": 1115,
+  "vocabulary_size": 7535,
+  "metrics_on_test_split": {
+    "accuracy": 0.9910313901345291,
+    "precision_spam": 0.986013986013986,
+    "recall_spam": 0.9463087248322147,
+    "f1_spam": 0.9657534246575342,
+    "macro_f1": 0.980296732968602
+  },
+  "labels": {
+    "0": "Not Spam (Ham)",
+    "1": "Spam"
+  }
+}

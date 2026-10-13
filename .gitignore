@@ -13,9 +13,3 @@ data/raw/*
 !data/raw/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
-models/*
-!models/.gitkeep
-reports/*.png
-reports/*.jpg
-reports/*.csv
-reports/*.json

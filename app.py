@@ -553,11 +553,22 @@ st.markdown(
 pipeline = load_trained_model()
 if pipeline is None:
     st.error(
-        "⚠️ **Model Artifact Missing!**\n\n"
-        "The model pipeline file `models/spam_classifier_pipeline.joblib` was not found. "
-        "Please train the model first by running:\n\n"
-        "```bash\npython -m src.spam_classifier.train\n```"
+        "⚠️ **Model Artifact Missing in Deployed Environment!**\n\n"
+        "The model pipeline file `models/spam_classifier_pipeline.joblib` was not found in your deployed instance. "
+        "(This happens if `models/` was excluded by `.gitignore` before pushing to GitHub)."
     )
+    st.info("You can train and initialize the model right now directly in this cloud container with one click:")
+    if st.button("🚀 Train & Initialize Model Now (~5 seconds)", type="primary"):
+        with st.spinner("Downloading dataset from UCI archive and training winning pipeline..."):
+            try:
+                from src.spam_classifier.data_loader import download_dataset
+                from src.spam_classifier.train import train_and_select_model
+                download_dataset()
+                train_and_select_model()
+                st.success("Model trained and saved successfully! Reloading application...")
+                st.rerun()
+            except Exception as e:
+                st.error(f"Training failed: {e}")
     st.stop()
 
 

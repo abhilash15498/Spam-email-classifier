@@ -1,0 +1,28 @@
+{
+  "dataset_summary": {
+    "total_messages": 5574,
+    "class_counts": {
+      "ham": 4827,
+      "spam": 747
+    },
+    "spam_percentage": 13.4,
+    "missing_messages": 0,
+    "duplicate_messages": 403
+  },
+  "class_statistics": {
+    "ham": {
+      "char_mean": 71.47192873420344,
+      "char_median": 52.0,
+      "word_mean": 14.304122643463849,
+      "word_median": 11.0,
+      "digit_mean": 0.30515848353014297
+    },
+    "spam": {
+      "char_mean": 138.6760374832664,
+      "char_median": 149.0,
+      "word_mean": 23.91164658634538,
+      "word_median": 25.0,
+      "digit_mean": 15.812583668005354
+    }
+  }
+}
